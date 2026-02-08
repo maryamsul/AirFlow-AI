@@ -5,6 +5,10 @@ __pycache__/
 *.pyc
 .env
 
+.envv
+.env.txt
+.env.example.txt
+
 # Node / frontend
 node_modules/
 
