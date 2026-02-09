@@ -25,13 +25,13 @@ class CircuitBreaker:
         
         if self.failure_count >= self.failure_threshold:
             self.state = "OPEN"
-            print(f"⚠️  Circuit breaker OPEN - API failures: {self.failure_count}")
+            print(f" Circuit breaker OPEN - API failures: {self.failure_count}")
     
     def call_succeeded(self):
         """Record a successful API call"""
         self.failure_count = 0
         self.state = "CLOSED"
-        print("✅ Circuit breaker CLOSED - API recovered")
+        print(" Circuit breaker CLOSED - API recovered")
     
     def can_attempt(self):
         """Check if we should attempt an API call"""
@@ -42,7 +42,7 @@ class CircuitBreaker:
             # Check if timeout has passed
             if time.time() - self.last_failure_time > self.timeout:
                 self.state = "HALF_OPEN"
-                print("🔄 Circuit breaker HALF_OPEN - Testing API")
+                print(" Circuit breaker HALF_OPEN - Testing API")
                 return True
             return False
         
@@ -126,7 +126,7 @@ Focus on actionable, specific recommendations that airport operations can implem
 """
         
         # Try Gemini 3 Flash with extended thinking for better insights
-        print("🤖 Calling Gemini 3 Flash Preview with deep reasoning...")
+        print(" Calling Gemini 3 Flash Preview with deep reasoning...")
         
         response = client.models.generate_content(
             model='gemini-3-flash-preview',
@@ -140,7 +140,7 @@ Focus on actionable, specific recommendations that airport operations can implem
         
         if response and hasattr(response, 'text') and response.text:
             circuit_breaker.call_succeeded()
-            print("✅ Gemini 3 analysis completed successfully")
+            print(" Gemini 3 analysis completed successfully")
             return response.text
         
         # No response text - treat as failure
@@ -149,17 +149,17 @@ Focus on actionable, specific recommendations that airport operations can implem
     
     except Exception as e:
         error_msg = str(e)
-        print(f"❌ Gemini API Error: {error_msg}")
+        print(f" Gemini API Error: {error_msg}")
         
         # Check for specific error types
         if '503' in error_msg or 'UNAVAILABLE' in error_msg or 'overloaded' in error_msg.lower():
-            print("⚠️  Google servers overloaded (503) - Opening circuit breaker")
+            print("  Google servers overloaded (503) - Opening circuit breaker")
             circuit_breaker.call_failed()
         elif '404' in error_msg or 'NOT_FOUND' in error_msg:
-            print("⚠️  Model not available - Check API access for Gemini 3")
+            print("  Model not available - Check API access for Gemini 3")
             circuit_breaker.call_failed()
         elif '429' in error_msg or 'RESOURCE_EXHAUSTED' in error_msg:
-            print("⚠️  Rate limit exceeded - Opening circuit breaker")
+            print("  Rate limit exceeded - Opening circuit breaker")
             circuit_breaker.call_failed()
         else:
             # Generic error
@@ -206,15 +206,15 @@ def generate_fallback_insights(
     # Build comprehensive analysis
     insights = f"""
 ═══════════════════════════════════════════════════════════════
-🏢 AIRPORT OPERATIONS ANALYSIS - LOCAL INTELLIGENCE MODE
+ AIRPORT OPERATIONS ANALYSIS - LOCAL INTELLIGENCE MODE
 ═══════════════════════════════════════════════════════════════
 
-📊 SITUATION ASSESSMENT
+ SITUATION ASSESSMENT
 Current terminal utilization is at {utilization:.1f}% ({cctv_count:,} passengers / {capacity:,} capacity).
 Based on ARIMA forecasting models and historical patterns, we anticipate a {trend} congestion trend over the next 6 hours.
 {risk_desc}
 
-⚠️  RISK ANALYSIS
+!!! RISK ANALYSIS
 Risk Level: {risk_level}
 """
     
@@ -235,7 +235,7 @@ Risk Level: {risk_level}
         insights += "• No significant risk factors identified at current utilization levels\n"
     
     # Peak congestion forecast
-    insights += "\n📈 PEAK CONGESTION FORECAST\n"
+    insights += "\n PEAK CONGESTION FORECAST\n"
     if peak_periods:
         for i, period in enumerate(peak_periods, 1):
             insights += f"{i}. {period}\n"
@@ -243,10 +243,10 @@ Risk Level: {risk_level}
         insights += "• No significant peaks forecasted in the next 6 hours\n"
     
     # Operational recommendations (prioritized)
-    insights += "\n🎯 OPERATIONAL RECOMMENDATIONS\n\n"
+    insights += "\n OPERATIONAL RECOMMENDATIONS\n\n"
     
     # Immediate actions (next 30 minutes)
-    insights += "⚡ IMMEDIATE ACTIONS (Next 30 minutes):\n"
+    insights += " IMMEDIATE ACTIONS (Next 30 minutes):\n"
     if utilization > 85:
         insights += "• Deploy all available security personnel to active checkpoints\n"
         insights += "• Activate emergency overflow processing lanes\n"
@@ -259,7 +259,7 @@ Risk Level: {risk_level}
         insights += "• Continue routine monitoring of passenger flow\n"
     
     # Short-term actions (next 2 hours)
-    insights += "\n⏱️  SHORT-TERM ACTIONS (Next 2 hours):\n"
+    insights += "\n  SHORT-TERM ACTIONS (Next 2 hours):\n"
     if trend == "increasing" or utilization > 70:
         insights += "• Prepare additional staff for anticipated peak periods\n"
         insights += "• Pre-position mobile customer service units\n"
@@ -269,7 +269,7 @@ Risk Level: {risk_level}
         insights += "• Conduct routine equipment checks during low-volume windows\n"
     
     # Medium-term preparations (2-6 hours)
-    insights += "\n📅 MEDIUM-TERM PREPARATIONS (2-6 hours):\n"
+    insights += "\n MEDIUM-TERM PREPARATIONS (2-6 hours):\n"
     if peak_periods:
         insights += f"• Schedule reinforcement teams for peak windows: {', '.join(peak_periods[:2])}\n"
     insights += "• Coordinate with ground transportation providers\n"
@@ -277,7 +277,7 @@ Risk Level: {risk_level}
     insights += "• Ensure backup systems are ready for high-volume periods\n"
     
     # Resource allocation strategy
-    insights += "\n👥 RESOURCE ALLOCATION STRATEGY\n"
+    insights += "\n RESOURCE ALLOCATION STRATEGY\n"
     
     if utilization > 85:
         insights += "• Security Personnel: Deploy 100% of available staff immediately\n"
@@ -297,9 +297,9 @@ Risk Level: {risk_level}
     
     insights += f"""
 ═══════════════════════════════════════════════════════════════
-ℹ️  Analysis Mode: Local Intelligence (Rule-Based Expert System)
-⏰ Generated: {current_data.get('timestamp', 'N/A')}
-🔄 Forecast Window: 6 hours | Data Points: {len(forecast_data)}
+ Analysis Mode: Local Intelligence (Rule-Based Expert System)
+ Generated: {current_data.get('timestamp', 'N/A')}
+ Forecast Window: 6 hours | Data Points: {len(forecast_data)}
 ═══════════════════════════════════════════════════════════════
 
 Note: This analysis uses advanced rule-based algorithms and ARIMA forecasting.
