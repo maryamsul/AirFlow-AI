@@ -24,7 +24,8 @@ graph TB
     style H fill:#d42424,stroke:#333,stroke-width:2px
     style A fill:#34a853,stroke:#333,stroke-width:2px
 ```
-![Screenshot.](https:/flowpoc.png")
+![Screenshot.](https://github.com/maryamsul/AirFlow-AI/blob/main/poc3.png)
+![Screenshot.](https://github.com/maryamsul/AirFlow-AI/blob/main/flowpoc.png)
 
 AirFlow AI is a high-availability "Digital Twin" platform designed to shift airport operations from reactive firefighting to proactive management. By combining statistical **ARIMA forecasting** with **Gemini 3 Flash** strategic reasoning, the system identifies terminal congestion risks up to 6 hours in advance.
 
