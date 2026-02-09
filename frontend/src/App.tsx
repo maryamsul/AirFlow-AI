@@ -58,7 +58,7 @@ function App() {
 
   const checkApiHealth = async () => {
     try {
-      const response = await fetch('http://localhost:8000/health');
+      const response = await fetch('https://airflow-ai-b.onrender.com/health');
       const data = await response.json();
       setApiHealth(data.status === 'healthy');
     } catch (err) {
@@ -83,7 +83,7 @@ function App() {
         timestamp: new Date().toISOString()
       };
 
-      const response = await fetch('http://localhost:8000/analyze', {
+      const response = await fetch('https://airflow-ai-b.onrender.com/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function App() {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:8000/simulate');
+      const response = await fetch('https://airflow-ai-b.onrender.com/simulate');
       
       if (!response.ok) {
         throw new Error('Simulation failed');
