@@ -15,11 +15,15 @@ from ai.gemini_reasoning import generate_gemini_insights
 load_dotenv()
 
 app = FastAPI(title="Airport Congestion Prediction API")
-
+origins = [
+    "https://airflow-ai.onrender.com",
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
 # CORS configuration for React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://airflow-ai.onrender.com/","http://localhost:5173", "http://localhost:3000"],  # Vite default port
+    allow_origins=["*"], # Vite default port
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
