@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Visualizations from './components/Visualizations';
+import Visualizations from './Components/Visualizations';
 import './App.css';
 
 interface CurrentMetrics {
