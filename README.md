@@ -64,7 +64,7 @@ Due to the classified nature of live airport telemetry, this project utilizes a 
 * **DevOps:** GitHub Actions, Render, Vercel
 
 ## 🏗️ Installation & Setup
-1. Clone the repository: `git clone https://github.com/your-username/airflow-ai.git`
+1. Clone the repository: `git clone https://github.com/maryamsul/airflow-ai.git`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Set Environment Variables: `GEMINI_API_KEY=your_key_here`
 4. Run the backend: `python app.py`
