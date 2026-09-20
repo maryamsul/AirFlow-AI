@@ -5,7 +5,7 @@ from pydantic import BaseModel
 import google.generativeai as genai
 import os
 
-genai.configure(api_key=os.getenv("AIzaSyCIjKrL__KZADF0gN9VHBUyXxxLDCfLiCs"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 model = genai.GenerativeModel("gemini-3-pro")
 
